@@ -4,6 +4,10 @@ const showOnPage = function (text) {
   let outputDiv = document.getElementById('output');
   outputDiv.append(newParagraph);
 };
+const dayOfWeek = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+dayOfWeek.forEach(function (item, index) {
+  showOnPage(`${index + 1}.  ${item}`);
+});
 
 const gameDecision = {
   freeTime: 0,
@@ -30,11 +34,10 @@ const gameDecision = {
     if (day === 'Friday' || 'Saturday') {
      
       this.kidsBedtime = 12;
-      
-    } else
-      day === 'Monday' || 'Tuesday' || 'Wednesday' || 'Thursday' || 'Sunday';
+    }
+     else
+     day === 'Monday' || 'Tuesday' || 'Wednesday' || 'Thursday' || 'Sunday';
     this.kidsBedtime = 9;
-
   },
   displayOut: function (time, bedtime, homework, weekend) {
     let freeTime = this.kidsBedtime - this.currentTime;
@@ -47,6 +50,7 @@ const gameDecision = {
     showOnPage('<b><:::::::::::::::::::::::::::::::::::></b>');
     showOnPage('Should I go and play video games with my kids?');
     showOnPage('<b><:::::::::::::::::::::::::::::::::::></b>');
+    showOnPage(`Today is ${this.dayOfWeek}`);
     if (this.isWeekend && this.homeworkDone) {
       showOnPage('Order some pizza and game on!!');
     } else if (
@@ -76,25 +80,45 @@ const gameDecision = {
     }
     showOnPage('<b><:::::::::::::::::::::::::::::::::::></b>');
   },
+
 };
-gameDecision.displayOut(
-  gameDecision.setTime(7),
-  gameDecision.determineKidsBedtime('Monday'),
-  gameDecision.setHomeworkDone(false),
-  gameDecision.setWeekend(false)
-);
-gameDecision.displayOut(
-  gameDecision.setTime(8.5),
-  gameDecision.determineKidsBedtime('Tuesday'),
-  gameDecision.setHomeworkDone(true),
-  gameDecision.setWeekend(false)
-);
-gameDecision.displayOut(
-  gameDecision.setTime(6),
-  gameDecision.determineKidsBedtime('Saturday'),
-  gameDecision.setHomeworkDone(true),
-  gameDecision.setWeekend(true)
-);
+for (let count = 0; count < 3; count++) {
+  const scenario = [gameDecision.displayOut(
+    gameDecision.setTime(7),
+    gameDecision.determineKidsBedtime(dayOfWeek[0]),
+    gameDecision.setHomeworkDone(false),
+    gameDecision.setWeekend(false)
+  ),gameDecision.displayOut(
+    gameDecision.setTime(8.5),
+    gameDecision.determineKidsBedtime(dayOfWeek[1]),
+    gameDecision.setHomeworkDone(true),
+    gameDecision.setWeekend(false)
+  ),gameDecision.displayOut(
+    gameDecision.setTime(6),
+    gameDecision.determineKidsBedtime(dayOfWeek[5]),
+    gameDecision.setHomeworkDone(true),
+    gameDecision.setWeekend(true)
+  )]
+  showOnPage(gameDecision.displayOut(scenario[count]))
+}
+// gameDecision.displayOut(
+//   gameDecision.setTime(7),
+//   gameDecision.determineKidsBedtime(dayOfWeek[0]),
+//   gameDecision.setHomeworkDone(false),
+//   gameDecision.setWeekend(false)
+// );
+// gameDecision.displayOut(
+//   gameDecision.setTime(8.5),
+//   gameDecision.determineKidsBedtime(dayOfWeek[1]),
+//   gameDecision.setHomeworkDone(true),
+//   gameDecision.setWeekend(false)
+// );
+// gameDecision.displayOut(
+//   gameDecision.setTime(6),
+//   gameDecision.determineKidsBedtime(dayOfWeek[5]),
+//   gameDecision.setHomeworkDone(true),
+//   gameDecision.setWeekend(true)
+// );
 
 //gameDecision.setDay('Monday')
 //showOnPage(gameDecision.dayOfWeek)
