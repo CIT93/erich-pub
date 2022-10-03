@@ -8,15 +8,10 @@
     <title>Week 8 My Code</title>
 </head>
 <body>
-    <div id="main">
-        <h1>:::: Should I Play Games With My Kids? ::::</h1>
+        <h1 id="main-title">:::: Should I Play Games With My Kids? ::::</h1>
         <hr>
         <form id="form">
-            <label for="">Enter Your name
-                <input type="text" name="firstName" placeholder="First Name" required>
-            </label>
-            <br>
-            <label for="">Current Time
+            <label>Current Time
                 <select name="currentTime" id="time" required>
                     <option value="6">6:00pm</option>
                     <option value="6.5">6:30pm</option>
@@ -25,8 +20,8 @@
                     <option value="8">8:00pm</option>
                 </select>
             </label>
-
-            <label for="">Kids Bedtime
+          <br />
+            <label>Kids Bedtime
                 <select name="kidsBedtime" id="bedtime" required>
                     <option value="9">9:00pm</option>
                     <option value="10">10:00pm</option>
@@ -35,14 +30,7 @@
                 </select>
             </label>
             <br />
-            <label for="">Homework Done
-                <input name="homeworkDone" type="checkbox" />
-            </label>
-            <label for="">Weekend
-                <input name="isWeekend" type="checkbox" />
-            </label>
-            <br />
-            <label for="">Day of the Week
+            <label>Day of the Week
                 <select name="dayOfWeek" id="day" required>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
@@ -53,12 +41,26 @@
                     <option value="Sunday">Sunday</option>
                 </select>
                 </label>
-                <br>
-                <button>Submit</button>
-        </form>
-        <hr>
+              <label id="homework-done">Homework Done
+                    <input name="homeworkDone" type="checkbox" />
+                </label>
+           
+                <div id="app-buttons">
+                    <button class="button" id="submit">Submit</button>
+               </div>
+               <hr>
+    </form>
+        <form id="clear-data">
+        <button class="button" id="clear">Clear Form</button>
+    </form>
+      
+        
+    <h2 id="decision-message"></h2>
+
     <div id="output"></div>
-</div>
+    <div id="list-output"></div>
+    
+
     <script src="app.js"></script>
 </body>
 

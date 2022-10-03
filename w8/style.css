@@ -1,19 +1,53 @@
 body {
-    background-color: rgb(117, 228, 167);
+    background-color: rgb(241, 243, 242);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 22px;
-    text-align: center;
+    font-size: 26px;
+    padding: 0 20px 20px 20px;
+    border: 15px solid black;
+    border-radius: 80px;
+    border-style: double;
+}
+#main-title {
+	border: 10px solid wheat;
+    border-style: outset;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 700px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin: auto;
+    margin-top: 20px;
 }
 
 h1 {
     color: blue;
     text-align: center;
+    text-shadow: 3px 3px 4px rgb(248, 170, 170);
 }
 h3 {
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
+    text-shadow: 3px 3px 2px rgb(161, 161, 168);
+    border: 5px solid black;
+    border-radius: 20px;
 }
 hr {
     border: 3px solid wheat;
-    border-radius: 20px;
+    border-style: inset;
   }
+#homework-done {
+    margin-left: 65px;
+}
+#app-buttons{
+    text-align: center;
+}
+#clear-data{
+    text-align: center;
+}
+.button {
+    color: white;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    background-color: #358edb;
+    text-align: center;
+}

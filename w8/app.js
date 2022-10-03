@@ -1,90 +1,122 @@
 
-const dailyDecision = [] // Hold new decision objects
+const finalOutput = [] 
 
-// Recieve data from a user through a form. Event Listener waits for a submit and sets data values accordingly
-// An object is created with user data values and gets passed to function runData.
-document.querySelector('form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  let userName = form.elements.firstName.value;
-  let currentTime = form.elements.currentTime.value;
-  let kidsBedtime = form.elements.kidsBedtime.value;
-  let dayOfWeek = form.elements.dayOfWeek.value;
-  let homeworkDone = form.elements.homeworkDone.checked;
-  let isWeekend = form.elements.isWeekend.checked;
-  let decision = {
-    userName: userName,
-    currentTime: currentTime,
-    kidsBedtime: kidsBedtime,
-    dayOfWeek: dayOfWeek,
-    homeworkDone: homeworkDone,
-    isWeekend: isWeekend,
+let dataSet = {
+  currentTime: 0,
+  kidsBedtime: 0,
+  dayOfWeek: '',
+  homeworkDone: false,
+  weekend: false,
+  
+}
+let isWeekend = function (day) {
+    
+  if (day != 'Friday' || 'Saturday') {
+    dataSet.weekend = false
+  }
+  else {
+   dataSet.weekend = true
+  }
+return dataSet.weekend
   }
 
-  runData(decision);
+document.querySelector('form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  dataSet.currentTime = form.elements.currentTime.value;
+  dataSet.kidsBedtime = form.elements.kidsBedtime.value;
+  dataSet.dayOfWeek = form.elements.dayOfWeek.value;
+  dataSet.homeworkDone = form.elements.homeworkDone.checked;
+ 
+  runData(dataSet);
+})
+document.querySelector('form').addEventListener('submit', function (e) {
+  e.preventDefault();
   document.getElementById('form').reset();
 })
 
-// Function which takes an object and uses its values to determine freeTime. 
-// Creates a new object from user inputs and return value from the function determineOutput
-// Pushes the new object to the array decisionObject.
-// Calls renderOutput function to display the data
 const runData = function (object) {
   let freeTime = object.kidsBedtime - object.currentTime
-  let decisionObject = determineOutput(freeTime, object.homeworkDone, object.isWeekend)
+  let weekend = isWeekend(dataSet.dayOfWeek)
+  let decisionObject = determineOutput(freeTime, object.homeworkDone, weekend)
   decisionObject.dayOfWeek = object.dayOfWeek
-  dailyDecision.push(decisionObject)
-  renderOutput(dailyDecision)
+  finalOutput.push(decisionObject)
+  renderOutput(finalOutput)
 }
 
-// Function which creates object elements of verdict, and message. They are passed back to the function runData
-const determineOutput = function (freeTime, homeworkDone, isWeekend) {
-  let verdict = ''
-  let message = ''
 
-  if (homeworkDone && isWeekend) {
+const determineOutput = function (freeTime, homeworkDone, weekend) {
+  
+
+  if (homeworkDone && weekend) {
     verdict = 'It is the weekend!!!'
     message = 'Order a pizza and have a gaming night'
+    list = 'Nothing needs to be done'
+    list1 = ''
+    list2 = ''
   }
-  else if (!isWeekend && homeworkDone && freeTime >= .51) {
+  else if (!weekend && homeworkDone && freeTime >= .51) {
     verdict = 'It is a school night but homework is done!'
     message = `You can play for ${freeTime} hours`
+    list = 'Nothing needs to be done'
+    list1 = ''
+    list2 = ''
   }
-  else if (!isWeekend && homeworkDone && freeTime < .51) {
+  else if (!weekend && homeworkDone && freeTime < .51) {
     verdict = `There is only ${freeTime} hours left before bedtime`
-    message = 'That is not enough time for gaming. Have the kids brush their teeth, and read them a story. You will have more time on the weekend.'
+    message = 'That is not enough time for gaming.'
+    list = 'Have the kids brush their teeth'
+    list1 = 'Read them a story' 
+    list2 = ''
   }
-  else if (isWeekend && !homeworkDone) {
+  else if (weekend && !homeworkDone) {
     verdict = 'No, it is the weekend but you found out the kids have a homework assignment!'
     message = 'They need to finish their homework before you can play'
+    list = 'Do homework'
+    list1 = 'Eat dinner'
+    list2 = 'Brush teeth'
   }
   else {
     verdict = 'No!, it is a school night and the kids have not done homework.'
     message = 'They need to finish all homework before their bedtime'
+    list = 'Do homework'
+    list1 = 'Eat dinner'
+    list2 = 'Brush teeth'
   }
-  return {verdict: verdict, message: message}
+  return {verdict, message, list, list1, list2}
 };
 
-const renderOutput = function(dailyDecision) {
+const renderOutput = function(obj) {
   document.querySelector('#output').innerHTML = '';
-  if (dailyDecision.length > 0) {
-    dailyDecision.forEach (function (element) {
-      const dayEl = document.createElement('h1');
-      dayEl.textContent = `${element.dayOfWeek}`;
-      document.querySelector('#output').appendChild(dayEl)
-      const verdictEl = document.createElement('h3');
-      verdictEl.textContent = `${element.verdict}`;
-      document.querySelector('#output').appendChild(verdictEl)
-      const messageEl = document.createElement('h3');
-      messageEl.textContent = `${element.message}`;
-      document.querySelector('#output').appendChild(messageEl)
+  if (finalOutput.length > 0) {
+    finalOutput.forEach (function (e) {
+      
+      const verdict = document.createElement('h3');
+      verdict.textContent = `${e.verdict}`;
+      document.querySelector('#output').appendChild(verdict)
+
+      const message = document.createElement('q');
+      message.textContent = `${e.message}`;
+      document.querySelector('#output').appendChild(message)
+
+      const list = document.createElement('li');
+      list.textContent = `${e.list}`;
+      document.querySelector('#list-output').appendChild(list)
+      
+      const list1 = document.createElement('li');
+      list1.textContent = `${e.list1}`;
+      document.querySelector('#list-output').appendChild(list1)
+
+      const list2 = document.createElement('li');
+      list2.textContent = `${e.list2}`;
+      document.querySelector('#list-output').appendChild(list2)
     }); 
   } else {
-    const blankEl = document.createElement('h3');
-      blankEl.textContent = 'Please enter data and submit';
-      document.querySelector('#output').appendChild(blankEl)
+    const noData = document.createElement('h3');
+      noData.textContent = 'Please enter data and submit';
+      document.querySelector('#output').appendChild(noData)
   }
 };
-renderOutput(dailyDecision)
+renderOutput(finalOutput)
 
 
 
