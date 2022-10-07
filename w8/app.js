@@ -11,11 +11,11 @@ let dataSet = {
 }
 let isWeekend = function (day) {
     
-  if (day != 'Friday' || 'Saturday') {
-    dataSet.weekend = false
+  if (day === 'Friday' || day === 'Saturday') {
+    dataSet.weekend = true
   }
   else {
-   dataSet.weekend = true
+   dataSet.weekend = false
   }
 return dataSet.weekend
   }
