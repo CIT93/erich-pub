@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Week 11 My Code</title>
+</head>
+<body>
+        <h1 id="main-title">:::: Should I Play Games With My Kids? ::::</h1>
+        <hr>
+        <form id="form">
+            <label>Current Time
+                <select name="currentTime" id="time" required>
+                    <option value="0"></option>
+                    <option value="6">6:00pm</option>
+                    <option value="6.5">6:30pm</option>
+                    <option value="7">7:00pm</option>
+                    <option value="7.5">7:30pm</option>
+                    <option value="8">8:00pm</option>
+                </select>
+            </label>
+          <br />
+            <label>Kids Bedtime
+                <select name="kidsBedtime" id="bedtime" required>
+                    <option value="0"></option>
+                    <option value="9">9:00pm</option>
+                    <option value="10">10:00pm</option>
+                    <option value="11">11:00pm</option>
+                    <option value="12">12:00am</option>
+                </select>
+            </label>
+            <br />
+            <label>Day of the Week
+                <select name="dayOfWeek" id="day" required>
+                    <option value="0"></option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+                </label>
+              <label id="homework-done">Homework Done
+                    <input name="homeworkDone" type="checkbox" />
+                </label>
+           <br>
+               
+                    <button class="button" id="submit">Submit</button>
+            
+               <hr>
+   
+    <div id="user-validation"></div>
+    <div id="output"></div>
+    <div id="summary"></div>
+    
+    <script src="../uuidv4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
+    <script src="app-functions.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

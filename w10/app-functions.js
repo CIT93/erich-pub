@@ -1,5 +1,5 @@
 const getFinalOutput = function (finalOutput) {
-    const finalOutputJSON = localStorage.getItem('output');
+    const finalOutputJSON = localStorage.getItem('decision');
   
     if (finalOutputJSON !== null) {
       return JSON.parse(finalOutputJSON);
@@ -11,15 +11,18 @@ const getFinalOutput = function (finalOutput) {
 // Save the final output to localStorage
 
 const saveFinalOutput = function (finalOutput) {
-    localStorage.setItem('output', JSON.stringify(finalOutput));
+    localStorage.setItem('decision', JSON.stringify(finalOutput));
   };
 
-  const removeResult = function (id) {
+const removeResult = function (id) {
+  const finalOutput = getFinalOutput();
     const resultIndex = finalOutput.findIndex(function (object) {
       return object.id === id
     })
     if (resultIndex > -1) {
-      object.splice(resultIndex, 1)
+      finalOutput.splice(resultIndex, 1)
+      saveFinalOutput(finalOutput)
+      renderOutput(finalOutput)
     }
   }
 
@@ -27,7 +30,7 @@ const saveFinalOutput = function (finalOutput) {
 // Function which recieves a day and returns true if it is the weekend
 // and false if it is not the weekend.
 
-  let isWeekend = function (day) {
+const isWeekend = function (day) {
     
     if (day === 'Friday' || day === 'Saturday') {
       dataSet.weekend = true
@@ -39,18 +42,20 @@ const saveFinalOutput = function (finalOutput) {
     }
 
 // Function takes object from the submission, modifies the object
-    const runData = function (object) {
+const runData = function (object) {
         let freeTime = object.kidsBedtime - object.currentTime
         let weekend = isWeekend(dataSet.dayOfWeek)
     
         let decisionObject = determineOutput(freeTime, object.homeworkDone, weekend)
+        const id = uuidv4()
+        
         decisionObject.dayOfWeek = object.dayOfWeek
-        decisionObject.id = uuidv4()
+        decisionObject.id = id
         finalOutput.push(decisionObject)
-        //renderOutput(finalOutput)
+      
       }
 
-      const determineOutput = function (freeTime, homeworkDone, weekend) {
+const determineOutput = function (freeTime, homeworkDone, weekend) {
   
         if (homeworkDone && weekend) {
           verdict = 'It is the weekend!!!'
@@ -93,12 +98,8 @@ const saveFinalOutput = function (finalOutput) {
       
 const renderOutput = function(object) {
   document.querySelector('#output').innerHTML = '';
-  document.querySelector("#user-validation").innerHTML = '';
-  document.querySelector("#decision-message").innerHTML = '';
-  document.querySelector("#list-output").innerHTML = '';
+  document.querySelector('#list-output').innerHTML = '';
 
-  
-  
   if (finalOutput.length > 0) {
     finalOutput.forEach (function (e) {
       
@@ -111,11 +112,8 @@ const renderOutput = function(object) {
       document.querySelector('#output').appendChild(verdict)
       verdict.appendChild(button)
       button.addEventListener('click', function () {
-        //removeResult(object.id)
-        localStorage.clear()
-        document.querySelector('').reset();
-       // renderOutput(finalOutput)
-        //saveFinalOutput(finalOutput)
+        removeResult(finalOutput.id)
+        saveFinalOutput(finalOutput)
         renderOutput(finalOutput)
       })
 

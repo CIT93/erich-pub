@@ -1,18 +1,19 @@
 
-const finalOutput = getFinalOutput();
+const finalOutputs = getSavedFinalOutput();
 
 let dataSet = {
+  id: '',
   currentTime: 0,
   kidsBedtime: 0,
   dayOfWeek: '',
   homeworkDone: false,
   weekend: false,
-  id: ''
+  createdAt: '',
 }
 
 const errorDOM = document.createElement('h3')
 
-document.querySelector('form').addEventListener('submit', function (e) {
+document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault();
   let errorMessage = []
     dataSet.currentTime = form.elements.currentTime.value;
@@ -24,17 +25,20 @@ document.querySelector('form').addEventListener('submit', function (e) {
     errorDOM.textContent = errorMessage
     document.querySelector("#user-validation").appendChild(errorDOM)
     } else {
+      const timeStamp = moment().unix()
+      // console.log(moment(nowTimestamp).toString())
+      const id = uuidv4()
+      dataSet.createdAt = timeStamp;
+      dataSet.id = id;
   runData(dataSet);
-  saveFinalOutput(finalOutput)
-  renderOutput(finalOutput)
+  saveFinalOutput(finalOutputs)
+  renderOutput(finalOutputs)
+  document.getElementById('form').reset();
     }
 })
-document.querySelector('#cleardata').addEventListener('click', function (e) {
-  e.preventDefault();
-  document.getElementById('form').reset();
-})
 
-//renderOutput(finalOutput)
+
+renderOutput(finalOutputs) // Initial render to screen
 
 
 

@@ -2,12 +2,13 @@
 const finalOutput = getFinalOutput();
 
 let dataSet = {
+  id: '',
   currentTime: 0,
   kidsBedtime: 0,
   dayOfWeek: '',
   homeworkDone: false,
   weekend: false,
-  id: ''
+ 
 }
 
 const errorDOM = document.createElement('h3')
@@ -34,7 +35,7 @@ document.querySelector('#cleardata').addEventListener('click', function (e) {
   document.getElementById('form').reset();
 })
 
-//renderOutput(finalOutput)
+renderOutput(finalOutput) // Initial render to screen
 
 
 
