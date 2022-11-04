@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Order Form</title>
+</head>
+<body>
+    <form id="form" name="order-form">
+        <h1>Garden Supply Depot</h1>
+        <h2>Order Form</h2>
+        <label for="">Item
+            <select name="item1" id="item1">
+                <option value="null">---Choose an Item---</option>
+                <option value="Potting Soil">Potting Soil - ($9.99)</option>
+                <option value="Organic Soil">Organic Soil - ($29.99)</option>
+                <option value="Hose 50ft">Hose 50ft - ($29.99)</option>
+                <option value="Work Gloves">Work Gloves - ($19.99)</option>
+                <option value="Leaf Rake">Leaf Rake - ($19.99)</option>
+                <option value="Flower Seeds">Flower Seeds - ($4.99)</option>
+            </select></label>
+            <label for="">Qty
+                <select name="quantity1" id="quantity1" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </label><br>
+                <button id="submit">Place an Order</button>
+    </form>
+    <hr>
+    <div id="user-validation"></div>
+    <h1>----Items In Shopping Cart----</h1>
+    <div id="orders"></div>
+    <div id="grandtotal"></div>
+    <script src="app-functions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
