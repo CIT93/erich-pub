@@ -1,0 +1,65 @@
+#form {
+    border: 10px solid rgb(216, 151, 32);
+    border-style: solid;
+	font-family: cursive ,serif, sans-serif;;
+	width: 600px;
+	padding-top: 30px;
+	padding-bottom: 40px;
+	margin: auto;
+    margin-top: 10px;
+    font-size: 28px;
+
+}
+h1 {
+    margin-left: 40px;
+    font-size:50px;
+    
+    
+}
+h2 {
+    font-style: italic;
+    text-decoration:black underline;
+    margin-left: 40px;
+}
+#submit {
+    margin-top: 30px;
+    margin-left: 100px;
+    color: white;
+    width: 150px;
+    border-radius: 30px;
+    border:  5px solid;
+    border-color:aliceblue;
+    background-color: #358edb;
+    text-align: center;
+    font-size:19px;
+}
+body {
+    background-color: lightblue;
+}
+li {
+    margin-top: 25px;
+    font-size: 25px;
+}
+hr{
+    border: 3px solid rgb(255, 255, 255);
+}
+#grandtotal {
+    font-size: 35px;
+    padding-top: 30px;
+    color:rgb(0, 0, 0);
+
+}
+p {
+    font-size: 25px;
+    color: red; 
+}
+label {
+    margin: auto;
+    margin-bottom: 10px;
+    display: inline-block;
+    background-color: none;
+  }
+  select {
+    font-size: 25px;
+    background-color: rgb(254, 255, 186);
+  }
