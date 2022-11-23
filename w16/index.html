@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>w16 Learn Together</title>
+</head>
+<body>
+    <h1><img src="checklist.png" alt="Checklist" />JSON Async/Fetch Challenge ==> Todos</h1>
+    <form id="form">
+    <label class="user-id" id="user-id">Select User ID
+        <select name="user" id="id">
+            <option value="0">All Users</option>
+            <option value="1">User ID: 1</option>
+            <option value="2">User ID: 2</option>
+            <option value="3">User ID: 3</option>
+            <option value="4">User ID: 4</option>
+            <option value="5">User ID: 5</option>
+            <option value="6">User ID: 6</option>
+            <option value="7">User ID: 7</option>
+            <option value="8">User ID: 8</option>
+            <option value="9">User ID: 9</option>
+            <option value="10">User ID: 10</option>
+        </select>
+    </label>
+</form>
+    <br>
+    <button id="gettodos" class="button-all">Show All Todo's</button>
+    <button id="only-incomplete" class="button-incomplete">Show Only Incomplete Todo's </button>
+    <div class="column-container">
+    <div class="column-complete" id="complete">
+        <h1>Completed Todo's</h1>
+    </div>
+    <div class="column-incomplete"   id="incomplete">
+        <h1>Incomplete Todo's</h1>
+    </div>
+</div>
+    <script src="requests.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
